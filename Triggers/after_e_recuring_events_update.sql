@@ -1,0 +1,1 @@
+CREATE DEFINER=`root`@`localhost` TRIGGER `e_recuring_events_AFTER_UPDATE` AFTER UPDATE ON `e_recuring_events` FOR EACH ROW CALL UpdateEvents(NEW.id)

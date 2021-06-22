@@ -1,0 +1,1 @@
+CREATE DEFINER=`root`@`localhost` TRIGGER `after_e_recuring_events_insert` AFTER INSERT ON `e_recuring_events` FOR EACH ROW CALL GenerateEvents()
