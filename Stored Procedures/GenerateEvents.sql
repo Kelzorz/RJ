@@ -10,7 +10,7 @@ BEGIN
       SET @t_start = date_add(@t_start, INTERVAL 1 DAY);
             IF dayofweek(@t_start) = 1 AND @t_sunday = 1 OR dayofweek(@t_start) = 2 AND @t_monday = 1 OR dayofweek(@t_start) = 3 AND @t_tuesday = 1 OR dayofweek(@t_start) = 4 AND @t_wednesday = 1 OR dayofweek(@t_start) = 5 AND @t_thursday = 1 OR dayofweek(@t_start) = 6 AND @t_friday = 1 OR dayofweek(@t_start) = 7 AND @t_saturday = 1 THEN
         INSERT INTO e_events (`title`, `description`, `cal_id`, `project_id`, `start`, `end`, `starttime`, `endtime`, `event_owner`, `pgm_id`, `event_user_id`, `email_user_id`, `signups`, `display_signups`, `block_signups`, `event_location`, `event_address`, `event_url`, `event_contact`, `event_file`, `event_file_size`, `status`, `created`, `updated`, `template_id`) VALUES
-        (@t_title, @t_description, @t_cal_id, @t_project_id, @t_start, @t_end, @t_starttime, @t_endtime, @t_event_owner, @t_pgm_id, @t_event_user_id, @t_email_user_id, @t_signups, @t_display_signups, @t_block_signups, @t_event_location, @t_event_address, @t_event_url, @t_event_contact, @t_event_file, @t_event_file_size, @t_status, @t_created, @t_updated, @t_id);
+        (@t_title, @t_description, @t_cal_id, @t_project_id, @t_start, @t_start, @t_starttime, @t_endtime, @t_event_owner, @t_pgm_id, @t_event_user_id, @t_email_user_id, @t_signups, @t_display_signups, @t_block_signups, @t_event_location, @t_event_address, @t_event_url, @t_event_contact, @t_event_file, @t_event_file_size, @t_status, @t_created, @t_updated, @t_id);
       END IF;
         UNTIL @t_start >= @t_end
         END REPEAT;
@@ -21,7 +21,7 @@ BEGIN
       SET @t_start = date_add(@t_start, INTERVAL (7 * @t_recursion_interval) DAY);
             IF @t_start <= @t_end THEN -- Don't craete events after the end date
         INSERT INTO e_events (`title`, `description`, `cal_id`, `project_id`, `start`, `end`, `starttime`, `endtime`, `event_owner`, `pgm_id`, `event_user_id`, `email_user_id`, `signups`, `display_signups`, `block_signups`, `event_location`, `event_address`, `event_url`, `event_contact`, `event_file`, `event_file_size`, `status`, `created`, `updated`, `template_id`) VALUES
-        (@t_title, @t_description, @t_cal_id, @t_project_id, @t_start, @t_end, @t_starttime, @t_endtime, @t_event_owner, @t_pgm_id, @t_event_user_id, @t_email_user_id, @t_signups, @t_display_signups, @t_block_signups, @t_event_location, @t_event_address, @t_event_url, @t_event_contact, @t_event_file, @t_event_file_size, @t_status, @t_created, @t_updated, @t_id);
+        (@t_title, @t_description, @t_cal_id, @t_project_id, @t_start, @t_start, @t_starttime, @t_endtime, @t_event_owner, @t_pgm_id, @t_event_user_id, @t_email_user_id, @t_signups, @t_display_signups, @t_block_signups, @t_event_location, @t_event_address, @t_event_url, @t_event_contact, @t_event_file, @t_event_file_size, @t_status, @t_created, @t_updated, @t_id);
       END IF;
         UNTIL @t_start >= @t_end
         END REPEAT;
@@ -34,7 +34,7 @@ BEGIN
         SET @t_start = date_add(@t_start, INTERVAL 1 MONTH);
         IF @t_start <= @t_end THEN -- Don't craete events after the end date
           INSERT INTO e_events (`title`, `description`, `cal_id`, `project_id`, `start`, `end`, `starttime`, `endtime`, `event_owner`, `pgm_id`, `event_user_id`, `email_user_id`, `signups`, `display_signups`, `block_signups`, `event_location`, `event_address`, `event_url`, `event_contact`, `event_file`, `event_file_size`, `status`, `created`, `updated`, `template_id`) VALUES
-          (@t_title, @t_description, @t_cal_id, @t_project_id, @t_start, @t_end, @t_starttime, @t_endtime, @t_event_owner, @t_pgm_id, @t_event_user_id, @t_email_user_id, @t_signups, @t_display_signups, @t_block_signups, @t_event_location, @t_event_address, @t_event_url, @t_event_contact, @t_event_file, @t_event_file_size, @t_status, @t_created, @t_updated, @t_id);
+          (@t_title, @t_description, @t_cal_id, @t_project_id, @t_start, @t_start, @t_starttime, @t_endtime, @t_event_owner, @t_pgm_id, @t_event_user_id, @t_email_user_id, @t_signups, @t_display_signups, @t_block_signups, @t_event_location, @t_event_address, @t_event_url, @t_event_contact, @t_event_file, @t_event_file_size, @t_status, @t_created, @t_updated, @t_id);
         END IF;
       UNTIL @t_start >= @t_end
       END REPEAT;
@@ -56,7 +56,7 @@ BEGIN
         END IF;
         IF @t_recursion_interval = @found_days AND @t_start >= now() THEN
           INSERT INTO e_events (`title`, `description`, `cal_id`, `project_id`, `start`, `end`, `starttime`, `endtime`, `event_owner`, `pgm_id`, `event_user_id`, `email_user_id`, `signups`, `display_signups`, `block_signups`, `event_location`, `event_address`, `event_url`, `event_contact`, `event_file`, `event_file_size`, `status`, `created`, `updated`, `template_id`) VALUES
-          (@t_title, @t_description, @t_cal_id, @t_project_id, @t_start, @t_end, @t_starttime, @t_endtime, @t_event_owner, @t_pgm_id, @t_event_user_id, @t_email_user_id, @t_signups, @t_display_signups, @t_block_signups, @t_event_location, @t_event_address, @t_event_url, @t_event_contact, @t_event_file, @t_event_file_size, @t_status, @t_created, @t_updated, @t_id);
+          (@t_title, @t_description, @t_cal_id, @t_project_id, @t_start, @t_start, @t_starttime, @t_endtime, @t_event_owner, @t_pgm_id, @t_event_user_id, @t_email_user_id, @t_signups, @t_display_signups, @t_block_signups, @t_event_location, @t_event_address, @t_event_url, @t_event_contact, @t_event_file, @t_event_file_size, @t_status, @t_created, @t_updated, @t_id);
           SET @found_days = 99; -- Only once per month allowed anyway
         END IF;
       UNTIL @t_start >= @t_end
