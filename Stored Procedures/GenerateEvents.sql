@@ -3,6 +3,10 @@ BEGIN
     SELECT *
     INTO @t_id, @t_title, @t_description, @t_cal_id, @t_project_id, @t_start, @t_end, @t_starttime, @t_endtime, @t_event_owner, @t_pgm_id, @t_event_user_id, @t_email_user_id, @t_signups, @t_display_signups, @t_block_signups, @t_event_location, @t_event_address, @t_event_url, @t_event_contact, @t_event_file, @t_event_file_size, @t_status, @t_created, @t_updated, @t_recursion_type, @t_recursion_interval, @t_monday, @t_tuesday, @t_wednesday, @t_thursday, @t_friday, @t_saturday, @t_sunday
   FROM e_recuring_events ORDER BY ID DESC LIMIT 1;
+
+    -- Add first date
+    INSERT INTO e_events (`title`, `description`, `cal_id`, `project_id`, `start`, `end`, `starttime`, `endtime`, `event_owner`, `pgm_id`, `event_user_id`, `email_user_id`, `signups`, `display_signups`, `block_signups`, `event_location`, `event_address`, `event_url`, `event_contact`, `event_file`, `event_file_size`, `status`, `created`, `updated`, `template_id`) VALUES
+      (@t_title, @t_description, @t_cal_id, @t_project_id, @t_start, @t_start, @t_starttime, @t_endtime, @t_event_owner, @t_pgm_id, @t_event_user_id, @t_email_user_id, @t_signups, @t_display_signups, @t_block_signups, @t_event_location, @t_event_address, @t_event_url, @t_event_contact, @t_event_file, @t_event_file_size, @t_status, @t_created, @t_updated, @t_id);
     
     -- Daily
     IF @t_recursion_type = 0 THEN
